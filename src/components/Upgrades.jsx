@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import UpgradeButton from "./UpgradeButton";
+// import Reset from "./Reset";
+import OptionMenu from "./OptionMenu";
 // Names array to swap out fetched upgrade names
 const newUpgradeNames = [
   "Hobbit Hole",
@@ -15,7 +17,11 @@ const newUpgradeNames = [
 ];
 
 export default function Upgrades({ hobbits, setHobbits, hps, setHps }) {
-  const [upgrades, setUpgrades] = useState([]);
+  const [upgrades, setUpgrades] = useState(
+    JSON.parse(localStorage.getItem("upgrades")) || []
+  );
+  // State used to reset upgrades (trigger useEffect again) when reset button pressed
+  const [reset, setReset] = useState(false);
 
   // Retrieve upgrades from API
   useEffect(() => {
@@ -36,8 +42,11 @@ export default function Upgrades({ hobbits, setHobbits, hps, setHps }) {
       // update upgrades with amended data state via setUpgrades
       setUpgrades(newData);
     }
-    getUpgrades();
-  }, []);
+    // Retrieve upgrades from API if none exist in local storage (1st render, game not saved or game reset)
+    if (localStorage.getItem("upgrades") == null) {
+      getUpgrades();
+    }
+  }, [reset]);
 
   // Handles logic when an upgrade is purchased
   function buyUpgrade(e) {
@@ -66,22 +75,43 @@ export default function Upgrades({ hobbits, setHobbits, hps, setHps }) {
   }
 
   return (
-    <div>
-      {upgrades.map(function (upgrade) {
-        return (
-          <div key={upgrade.id}>
-            <UpgradeButton
-              buyUpgrade={buyUpgrade}
-              upgradeName={upgrade.name}
-              hobbits={hobbits}
-              costNext={upgrade.costNext}
-            />
-            <p>Cost: {upgrade.costNext}</p>
-            <p>Increase: {upgrade.increase}</p>
-            <p>Owned: {upgrade.owned}</p>
-          </div>
-        );
-      })}
+    <div className="game-container">
+      <div className="game-bar">
+        <OptionMenu
+          hobbits={hobbits}
+          setHobbits={setHobbits}
+          hps={hps}
+          setHps={setHps}
+          upgrades={upgrades}
+          reset={reset}
+          setReset={setReset}
+        />
+      </div>
+      <div className="upgrades">
+        <div className="upgrade-display">
+          <p className="upgrade-headers">
+            <span>Upgrade</span>
+            <span>Increase</span>
+            <span>Cost</span>
+            <span>Owned</span>
+          </p>
+          {upgrades.map(function (upgrade) {
+            return (
+              <div key={upgrade.id}>
+                <UpgradeButton
+                  buyUpgrade={buyUpgrade}
+                  upgradeName={upgrade.name}
+                  hobbits={hobbits}
+                  costNext={upgrade.costNext}
+                />
+                <p>Cost: {upgrade.costNext}</p>
+                <p>Increase: {upgrade.increase}</p>
+                <p>Owned: {upgrade.owned}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

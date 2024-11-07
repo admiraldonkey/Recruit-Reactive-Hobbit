@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
+import ImageTile from "./components/ImageTile.";
 import Upgrades from "./components/Upgrades";
 
 export default function App() {
@@ -17,8 +18,9 @@ export default function App() {
   }, [hps]);
 
   return (
-    <div>
+    <div className="page-content">
       <Header hobbits={hobbits} setHobbits={setHobbits} hps={hps} />
+      <ImageTile />
       <Upgrades
         hobbits={hobbits}
         setHobbits={setHobbits}
