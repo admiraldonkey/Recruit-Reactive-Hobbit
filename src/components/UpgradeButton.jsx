@@ -1,15 +1,12 @@
 export default function UpgradeButton({
-  newUpgradeName,
+  upgradeName,
   buyUpgrade,
-  upgradeCost,
+  costNext,
   hobbits,
 }) {
   return (
-    <button
-      onClick={buyUpgrade}
-      disabled={hobbits >= upgradeCost ? false : true}
-    >
-      {newUpgradeName}
+    <button onClick={buyUpgrade} disabled={hobbits >= costNext ? false : true}>
+      {upgradeName}
     </button>
   );
 }
