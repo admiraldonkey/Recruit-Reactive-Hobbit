@@ -7,7 +7,7 @@ const themeTune = new Audio(Theme);
 
 export default function App() {
   const [hobbits, setHobbits] = useState(
-    parseInt(localStorage.getItem("hobbits")) || 100000
+    parseInt(localStorage.getItem("hobbits")) || 0
   );
   const [hps, setHps] = useState(parseInt(localStorage.getItem("hps")) || 0);
   // For updating ui styling as user progresses through the game
