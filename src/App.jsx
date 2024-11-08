@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
-import ImageTile from "./components/ImageTile.";
+import ImageTile from "./components/ImageTile";
 import Upgrades from "./components/Upgrades";
 import Theme from "./assets/sounds/Concerning Hobbits.mp3";
 const themeTune = new Audio(Theme);
