@@ -1,13 +1,3 @@
-/* TODO: Remove "no-unused-vars": "off" rule in eslint config file */
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-}
-
 /* GLOBAL STYLES */
 * {
   box-sizing: border-box;
@@ -37,24 +27,25 @@ body {
 }
 
 /* Current hobbits/ hps display */
-/* .game-data .game-stats {
-    width: 100vw;
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  } */
+.game-data .game-stats {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 
 .game-data .game-stats p {
-  font-size: 20px;
+  font-size: 26px;
+  margin: 10px 0px;
 }
 
 /* Generate hobbit button */
 .hobbit-btn {
   position: fixed;
-  padding: 10px;
-  font-size: 20px;
-  border-radius: 20px;
+  padding: 20px;
+  font-size: 22px;
+  border-radius: 40px;
   border: none;
   font-family: cursive;
   color: white;
@@ -63,13 +54,13 @@ body {
 
 .hobbit-btn:hover {
   box-shadow: 0px 0px 6px 6px #1a281f90;
+  cursor: pointer;
 }
 
 /* IMAGE TILE - IMAGE UPDATES BASED ON USER PROGRESS */
 .image-tile {
-  /* background-image: url("./assets/images/The\ Shire.jpg"); */
-  /* background-position: center;
-  background-size: cover; */
+  background-position: center;
+  background-size: cover;
   width: 100vw;
   height: 100%;
   min-height: 100%;
@@ -78,7 +69,7 @@ body {
 
 /* MAIN GAME SECTION - INFO, UPGRADES, OPTIONS */
 .game-container {
-  padding: 20px;
+  padding: 10px;
   background-color: #05080bdd;
   color: white;
   height: 100%;
@@ -103,12 +94,15 @@ body {
 }
 
 .game-bar h2 {
-  margin-top: 10px;
-  font-size: 20px;
+  margin-top: 12px;
+  font-size: 22px;
 }
 
 .game-bar h3 {
   margin-bottom: 0px;
+  margin-top: 36px;
+  font-family: fantasy;
+  font-size: 24px;
 }
 
 /* Drop down options menu */
@@ -148,6 +142,8 @@ body {
   display: block;
   text-align: center;
   width: 100%;
+  margin: 0;
+  font-size: 14px;
 }
 
 .options-content a:hover {
@@ -166,6 +162,7 @@ body {
   height: 100%;
   padding-bottom: 10px;
   font-family: serif;
+  font-size: 18px;
 }
 
 .upgrade-display .upgrade-headers {
@@ -181,18 +178,8 @@ body {
   padding-right: 10px;
 }
 
-/* Style upgrades that player can't currently afford */
-.upgrade-display .cant-afford button {
-  background-color: grey;
-}
-
-.upgrade-display .cant-afford button:hover {
-  background-color: grey;
-  cursor: not-allowed;
-}
-
 /* Info & current stats for each upgrade */
-.upgrade-display div {
+.upgrade-display p {
   display: grid;
   grid-template: repeat(4, 1fr) / 1fr;
   max-width: 80%;
@@ -201,18 +188,26 @@ body {
   margin-top: 0;
 }
 
-.upgrade-display div button {
+.upgrade-display p button {
   background-color: #5f4842aa;
   color: white;
   border-radius: 10px;
   border: none;
   padding: 5px;
-  width: 100px;
-  height: 50px;
+  width: 120px;
+  height: 60px;
+  font-size: 16px;
 }
-.upgrade-display div button:hover {
+.upgrade-display p button:hover {
   background-color: #5f4842ff;
   box-shadow: 4px 4px 10px #6b654b;
+  cursor: pointer;
+}
+
+.upgrade-display p button:disabled {
+  background-color: #b7b7b7cc;
+  opacity: 0.8;
+  cursor: not-allowed;
 }
 
 .upgrade-display p span {
@@ -229,8 +224,8 @@ body {
   padding-top: 0px;
 }
 
-/* Change UI if screen smaller than 1135px */
-@media (max-width: 1135px) {
+/* Change UI if screen smaller than 1298px */
+@media (max-width: 1298px) {
   .page-content {
     display: flex;
     flex-direction: column;
@@ -267,10 +262,9 @@ body {
     padding: 5px 10px;
   }
 
-  .image-display {
+  .image-tile {
     min-height: 50vh;
     width: 100%;
-    max-width: auto;
   }
 
   .game-container {

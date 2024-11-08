@@ -34,7 +34,6 @@ export default [
         { allowConstantExport: true },
       ],
       "react/prop-types": "off",
-      "no-unused-vars": "off", //Temporary switch because man that's obnoxiously distracting
     },
   },
 ];
